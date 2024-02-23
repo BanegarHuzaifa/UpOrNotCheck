@@ -210,7 +210,7 @@ function handleClose() {
 }
 
 function isProperUrl(text) {
-  const regex = /^(https?|http):\/\/(www\.)?[\w-]+\.[a-zA-Z]+\.[a-zA-Z]+\/?$/;
+  const regex = /^((https?:\/\/)?(www\.)?[\w-]+\.(com|io|[a-zA-Z]{2}))$/
   return regex.test(text);
 }
 
@@ -224,10 +224,10 @@ function extractDomainName(url) {
 function handleSubmit() {
   const message = document.getElementById("message");
   let inputValue = document.querySelector(".inputArea").value;
-  if(!inputValue.startsWith('https://www.')&&!inputValue.startsWith('http://www.')){
+  if(!inputValue.startsWith('https://')&&!inputValue.startsWith('http://')){
       inputValue='https://www.'+inputValue;
   }
-
+// console.log(inputValue)
   if(isProperUrl(inputValue)){
     fetchStatus(inputValue);
   }else{
