@@ -210,7 +210,7 @@ function handleClose() {
 }
 
 function isProperUrl(text) {
-  const regex = /^((https?:\/\/)?(www\.)?[\w-]+\.(com|io|[a-zA-Z]{2}))$/
+  const regex = /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/
   return regex.test(text);
 }
 
@@ -227,7 +227,7 @@ function handleSubmit() {
   if(!inputValue.startsWith('https://')&&!inputValue.startsWith('http://')){
       inputValue='https://www.'+inputValue;
   }
-// console.log(inputValue)
+
   if(isProperUrl(inputValue)){
     fetchStatus(inputValue);
   }else{
