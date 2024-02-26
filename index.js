@@ -210,7 +210,7 @@ function handleClose() {
 }
 
 function isProperUrl(text) {
-  const regex = /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/
+  const regex = /^(http(s)?:\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/
   return regex.test(text);
 }
 
@@ -224,10 +224,10 @@ function extractDomainName(url) {
 function handleSubmit() {
   const message = document.getElementById("message");
   let inputValue = document.querySelector(".inputArea").value;
-  if(!inputValue.startsWith('https://')&&!inputValue.startsWith('http://')){
+  if(!inputValue.startsWith('https://') && !inputValue.startsWith('http://')){
       inputValue='https://www.'+inputValue;
   }
-
+  console.log((inputValue))
   if(isProperUrl(inputValue)){
     fetchStatus(inputValue);
   }else{
