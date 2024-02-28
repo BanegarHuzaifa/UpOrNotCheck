@@ -227,7 +227,7 @@ function handleSubmit() {
   if(!inputValue.startsWith('https://') && !inputValue.startsWith('http://')){
       inputValue='https://www.'+inputValue;
   }
-  console.log((inputValue))
+  
   if(isProperUrl(inputValue)){
     fetchStatus(inputValue);
   }else{
@@ -256,7 +256,7 @@ async function fetchStatus(url) {
         message.innerHTML = `Checking...`;
       }
       count++;
-    }, 500);
+    }, 1000);
   
     const api = "https://apitest.seovigil.io/api/v1/public/status/check";
     const requestBody = {
@@ -271,7 +271,7 @@ async function fetchStatus(url) {
         },
         body: JSON.stringify(requestBody),
       });
-      clearInterval(intervalId); // Clear the interval once API call is done
+      clearInterval(intervalId); // 
       const response = await data.json();
     if (response.data.status_code == 200) {
       message.style.display = "flex";
@@ -303,6 +303,12 @@ async function fetchStatus(url) {
       message.style.color = "white";
       message.style.background = "#FF8911";
       message.innerHTML = `<p>${url}is being redirected</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
+    }else{
+      message.style.display = "flex";
+      message.style.justifyContent = "space-between";
+      message.style.color = "white";
+      message.style.background = "#EF4040";
+      message.innerHTML = `<p>Something went wrong! 😣</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
     }
   } catch (error) {
     message.style.display = "flex";
