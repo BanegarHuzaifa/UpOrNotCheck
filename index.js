@@ -279,7 +279,7 @@ async function fetchStatus(url) {
       message.style.justifyContent = "space-between";
       message.style.color = "white";
       message.style.background = "#65B741";
-      message.innerHTML = `<pThe web page checked is up and running!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
+      message.innerHTML = `<p>The web page checked is up and running!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
     } else if (
       response.data.status_code > 400 &&
       response.data.status_code < 500
