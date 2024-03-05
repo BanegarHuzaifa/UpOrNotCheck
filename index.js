@@ -273,12 +273,13 @@ async function fetchStatus(url) {
       });
       clearInterval(intervalId); // 
       const response = await data.json();
+     
     if (response.data.status_code == 200) {
       message.style.display = "flex";
       message.style.justifyContent = "space-between";
       message.style.color = "white";
       message.style.background = "#65B741";
-      message.innerHTML = `<p>${url} is up and running fine.</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
+      message.innerHTML = `<pThe web page checked is up and running!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
     } else if (
       response.data.status_code > 400 &&
       response.data.status_code < 500
@@ -287,13 +288,13 @@ async function fetchStatus(url) {
       message.style.justifyContent = "space-between";
       message.style.color = "white";
       message.style.background = "#EF4040";
-      message.innerHTML = `<p>${url} is down and it's not just you!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
+      message.innerHTML = `<p>This web page is not found!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
     } else if (response.data.status_code > 500) {
       message.style.display = "flex";
       message.style.justifyContent = "space-between";
       message.style.color = "white";
       message.style.background = "#EF4040";
-      message.innerHTML = `<p>${url} is timing out and it's not just you!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
+      message.innerHTML = `<p>The website is likely down, the server did not respond to our request!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
     } else if (
       (response.data.status_code > 300 && response.data.status_code < 400) ||
       response.data.is_redirect == true
@@ -302,19 +303,19 @@ async function fetchStatus(url) {
       message.style.justifyContent = "space-between";
       message.style.color = "white";
       message.style.background = "#FF8911";
-      message.innerHTML = `<p>${url}is being redirected</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
+      message.innerHTML = `<p>The web page is being redirected</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
     }else{
       message.style.display = "flex";
       message.style.justifyContent = "space-between";
       message.style.color = "white";
       message.style.background = "#EF4040";
-      message.innerHTML = `<p>Something went wrong! 😣</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
+      message.innerHTML = `<p>The website is likely down, the server did not respond to our request!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
     }
   } catch (error) {
     message.style.display = "flex";
     message.style.justifyContent = "space-between";
     message.style.color = "white";
     message.style.background = "#EF4040";
-    message.innerHTML = `<p>${url} is down and it's not just you!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
+    message.innerHTML = `<p>The website is likely down, the server did not respond to our request!</p> <p style="cursor:pointer" onclick="handleClose()">ⓧ</p>`;
   }
 }
