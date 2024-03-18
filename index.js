@@ -143,6 +143,40 @@ var domains = [
 
 document.addEventListener("DOMContentLoaded", function () {
   const inputArea = document.querySelector(".inputArea");
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    const results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  // // Extract query parameter
+  // const queryName = getUrlParameter("query");
+
+  // // Find matching domain
+  // const matchingDomain = domains.find((domain) =>
+  //   queryName.toLowerCase().includes(domain.name.toLowerCase())
+  // );
+
+  // // If matching domain found, append its URL to input box
+  // if (matchingDomain) {
+  //   inputArea.value = matchingDomain.url;
+  // }
+
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    const results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  // Extract query parameter
+  const queryUrl = getUrlParameter("url");
+
+  // If query URL is present, directly append it to the input box
+  if (queryUrl) {
+    inputArea.value = queryUrl;
+  }
 
   function debounce(func, delay) {
     let timeoutId;
